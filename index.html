@@ -4,20 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Antonio Vissotto</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #000;
+            color: #00ff00;
+            font-family: monospace;
+        }
+        pre {
+            white-space: pre-wrap;
+            font-size: 14px;
+            line-height: 1.2em;
+        }
+    </style>
 </head>
 <body>
-    <pre>
-           ___                       ___           ___           ___           ___           ___           ___     
-          /\__\          ___        /\  \         /\  \         /\  \         /\  \         /\  \         /\  \    
-         /:/  /         /\  \      /::\  \       /::\  \       /::\  \        \:\  \        \:\  \       /::\  \   
-        /:/  /          \:\  \    /:/\ \  \     /:/\ \  \     /:/\:\  \        \:\  \        \:\  \     /:/\:\  \  
-       /:/__/  ___      /::\__\  _\:\~\ \  \   _\:\~\ \  \   /:/  \:\  \       /::\  \       /::\  \   /:/  \:\  \ 
-       |:|  | /\__\  __/:/\/__/ /\ \:\ \ \__\ /\ \:\ \ \__\ /:/__/ \:\__\     /:/\:\__\     /:/\:\__\ /:/__/ \:\__\
-       |:|  |/:/  / /\/:/  /    \:\ \:\ \/__/ \:\ \:\ \/__/ \:\  \ /:/  /    /:/  \/__/    /:/  \/__/ \:\  \ /:/  /
-       |:|__/:/  /  \::/__/      \:\ \:\__\    \:\ \:\__\    \:\  /:/  /    /:/  /        /:/  /       \:\  /:/  / 
-        \::::/__/    \:\__\       \:\/:/  /     \:\/:/  /     \:\/:/  /     \/__/         \/__/         \:\/:/  /  
-         ~~~~         \/__/        \::/  /       \::/  /       \::/  /                                   \::/  /   
-                                    \/__/         \/__/         \/__/                                     \/__/    
-    </pre>
+    <pre id="asciiArt"></pre>
+
+    <script>
+        const asciiArtLines = [
+            "           ___                       ___           ___           ___           ___           ___           ___     ",
+            "          /\\__\\          ___        /\\  \\         /\\  \\         /\\  \\         /\\  \\         /\\  \\         /\\  \\    ",
+            "         /:/  /         /\\  \\      /::\\  \\       /::\\  \\       /::\\  \\        \\:\\  \\        \\:\\  \\       /::\\  \\   ",
+            "        /:/  /          \\:\\  \\    /:/\\ \\  \\     /:/\\ \\  \\     /:/\\:\\  \\        \\:\\  \\        \\:\\  \\     /:/\\:\\  \\  ",
+            "       /:/__/  ___      /::\\__\\  _\\:\\~\\ \\  \\   _\\:\\~\\ \\  \\   /:/  \\:\\  \\       /::\\  \\       /::\\  \\   /:/  \\:\\  \\ ",
+            "       |:|  | /\\__\\  __/:/\\/__/ /\\ \\:\\ \\ \\__\\ /\\ \\:\\ \\ \\__\\ /:/__/ \\:\\__\\     /:/\\:\\__\\     /:/\\:\\__\\ /:/__/ \\:\\__\\",
+            "       |:|  |/:/  / /\\/:/  /    \\:\\ \\:\\ \\/__/ \\:\\ \\:\\ \\/__/ \\:\\  \\ /:/  /    /:/  \\/__/    /:/  \\/__/ \\:\\  \\ /:/  /",
+            "       |:|__/:/  /  \\::/__/      \\:\\ \\:\\__\\    \\:\\ \\:\\__\\    \\:\\  /:/  /    /:/  /        /:/  /       \\:\\  /:/  / ",
+            "        \\::::/__/    \\:\\__\\       \\:\\/:/  /     \\:\\/:/  /     \\:\\/:/  /     \\/__/         \\/__/         \\:\\/:/  /  ",
+            "         ~~~~         \\/__/        \\::/  /       \\::/  /       \\::/  /                                   \\::/  /   ",
+            "                                    \\/__/         \\/__/         \\/__/                                     \\/__/    "
+        ];
+
+        const displayElement = document.getElementById("asciiArt");
+        let lineIndex = 0;
+
+        function displayNextLine() {
+            if (lineIndex < asciiArtLines.length) {
+                displayElement.textContent += asciiArtLines[lineIndex] + "\n";
+                lineIndex++;
+                setTimeout(displayNextLine, 200); // Intervalo de 200 ms entre as linhas
+            } else {
+                setTimeout(resetDisplay, 5000); // Pausa de 5 segundos antes de reiniciar
+            }
+        }
+
+        function resetDisplay() {
+            displayElement.textContent = "";
+            lineIndex = 0;
+            displayNextLine();
+        }
+
+        displayNextLine(); // Inicia a animação
+    </script>
 </body>
 </html>
